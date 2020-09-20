@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-fontawesome-css`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -25,6 +26,48 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            "family": "Roboto",
+            "variants": [
+              "400",
+              "400i",
+              "700",
+              "700i"
+            ],
+            "subsets": [
+              "latin-ext"
+            ]
+          },
+          {
+            family: `Oswald`,
+            subsets: [`latin`],
+          },
+          {
+            family: `Open Sans`,
+            variants: [`400`, `700`]
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-source-strapi`,
+      options: {
+        apiURL: `http://localhost:1337`,
+        queryLimit: 1000, // Default to 100
+        contentTypes: [`job`],
+        //If using single types place them in this array.
+        // singleTypes: [`home-page`, `contact`],
+        // Possibility to login with a strapi user, when content types are not publically available (optional).
+        // loginData: {
+        //   identifier: "",
+        //   password: "",
+        // },
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
